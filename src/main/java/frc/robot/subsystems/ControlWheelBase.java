@@ -10,10 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class ControlWheelBase extends SubsystemBase {
 
  public static WPI_TalonSRX ControlWheel = RobotContainer.controlWheel; 
+ public static DoubleSolenoid ControlWheelSolenoid = RobotContainer.controlWheelSolenoid; 
   /**
    * Creates a new ControlWheelBase.
    */
@@ -33,5 +35,11 @@ public class ControlWheelBase extends SubsystemBase {
   public void wheelStop(){
     ControlWheel.set(0);
   }
-  
+  public void controlWheelSolenoidUp(){
+    ControlWheelSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void controlWheelSolenoidDown(){
+    ControlWheelSolenoid.set(DoubleSolenoid.Value.kReverse);
+  }
 }

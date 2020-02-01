@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.*;
@@ -39,6 +38,8 @@ public class RobotContainer {
   public static JoystickButton intakeDown; 
   public static JoystickButton upTilt;
   public static JoystickButton downTilt;
+  public static JoystickButton controlWheelUp; 
+  public static JoystickButton controlWheelDown;
 
   public static WPI_TalonSRX leftFrontTalon = new WPI_TalonSRX(2);
   public static WPI_VictorSPX leftBackVictor = new WPI_VictorSPX(3);
@@ -51,6 +52,7 @@ public class RobotContainer {
   public static Spark intakeSpark = new Spark (1); 
 
   public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid (1,2);
+  public static DoubleSolenoid controlWheelSolenoid = new DoubleSolenoid (3,4);
 
   public static Compressor robotCompressor = new Compressor(0);
 
@@ -75,10 +77,12 @@ public static ShooterBase shooterBase;
 
     wheelControl = new JoystickButton (logitech, 1); 
     intakeButton = new JoystickButton(logitech, 2);
-    intakeUp = new JoystickButton(logitech, 3);
-    intakeDown = new JoystickButton(logitech, 4);
-    upTilt = new JoystickButton(logitech, 5);
-    downTilt = new JoystickButton(logitech, 6);
+    controlWheelUp = new JoystickButton(logitech, 3);
+    controlWheelDown = new JoystickButton(logitech, 4);
+    intakeUp = new JoystickButton(logitech, 5);
+    intakeDown = new JoystickButton(logitech, 6);
+    upTilt = new JoystickButton(logitech, 7);
+    downTilt = new JoystickButton(logitech, 8);
 
     driveBase = new DriveBase();
     driveWithJoystick = new DriveWithJoystick();
@@ -95,6 +99,8 @@ public static ShooterBase shooterBase;
     upTilt.whenReleased(new TiltStop());
     downTilt.whileHeld(new TiltDown());
     downTilt.whenReleased(new TiltStop());
+    controlWheelUp.whenPressed(new ControlWheelUp());
+    controlWheelDown.whenPressed(new ControlWheelDown());
 
     // Configure the button bindings
     configureButtonBindings();
