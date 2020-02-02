@@ -40,6 +40,7 @@ public class RobotContainer {
   public static JoystickButton downTilt;
   public static JoystickButton controlWheelUp; 
   public static JoystickButton controlWheelDown;
+  public static JoystickButton shootBall;
 
   public static WPI_TalonSRX leftFrontTalon = new WPI_TalonSRX(2);
   public static WPI_VictorSPX leftBackVictor = new WPI_VictorSPX(3);
@@ -50,6 +51,9 @@ public class RobotContainer {
   public static WPI_TalonSRX tiltShooter = new WPI_TalonSRX (7);
 
   public static Spark intakeSpark = new Spark (1); 
+  public static Spark shooterLeftSpark = new Spark(2);
+  public static Spark shooterRightSpark = new Spark(3);
+
 
   public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid (1,2);
   public static DoubleSolenoid controlWheelSolenoid = new DoubleSolenoid (3,4);
@@ -91,16 +95,24 @@ public static ShooterBase shooterBase;
 
     wheelControl.whileHeld(new WheelStart());
     wheelControl.whenReleased(new WheelStop());
+    
     intakeButton.whileHeld(new IntakeStart());
     intakeButton.whenReleased(new IntakeStop());
+
     intakeUp.whenPressed(new IntakeSolenoidUp()); 
     intakeDown.whenPressed(new IntakeSolenoidDown()); 
+
     upTilt.whileHeld(new TiltUp());
     upTilt.whenReleased(new TiltStop());
     downTilt.whileHeld(new TiltDown());
     downTilt.whenReleased(new TiltStop());
+
     controlWheelUp.whenPressed(new ControlWheelUp());
     controlWheelDown.whenPressed(new ControlWheelDown());
+    
+    shootBall = new JoystickButton(logitech, 1);
+    shootBall.whileHeld(new ShootBall());
+    shootBall.whenReleased(new StopBall());
 
     // Configure the button bindings
     configureButtonBindings();
