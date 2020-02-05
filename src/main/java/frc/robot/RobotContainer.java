@@ -28,20 +28,6 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class RobotContainer {
 
-  public static Joystick leftJoystick;
-  public static Joystick rightJoystick;
-  public static Joystick logitech; 
-
-  public static JoystickButton wheelControl;
-  public static JoystickButton intakeButton;
-  public static JoystickButton intakeUp;
-  public static JoystickButton intakeDown; 
-  public static JoystickButton upTilt;
-  public static JoystickButton downTilt;
-  public static JoystickButton controlWheelUp; 
-  public static JoystickButton controlWheelDown;
-  public static JoystickButton shootBall;
-
   public static WPI_TalonSRX leftFrontTalon = new WPI_TalonSRX(2);
   public static WPI_VictorSPX leftBackVictor = new WPI_VictorSPX(3);
   public static WPI_TalonSRX rightFrontTalon = new WPI_TalonSRX(4); 
@@ -53,6 +39,9 @@ public class RobotContainer {
   public static Spark intakeSpark = new Spark (1); 
   public static Spark shooterLeftSpark = new Spark(2);
   public static Spark shooterRightSpark = new Spark(3);
+  public static Spark conveyorSpark = new Spark (4);
+  public static Spark elevatorSpark = new Spark (5);
+  public static Spark hookSpark = new Spark(6);
 
 
   public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid (1,2);
@@ -69,6 +58,27 @@ public static DriveWithJoystick driveWithJoystick;
 public static ControlWheelBase controlWheelBase; 
 public static IntakeBase intakeBase; 
 public static ShooterBase shooterBase; 
+public static ClimberBase climberBase;
+
+public static Joystick leftJoystick;
+public static Joystick rightJoystick;
+public static Joystick logitech; 
+
+  public static JoystickButton wheelControl;
+  public static JoystickButton intakeButton;
+  public static JoystickButton intakeUp;
+  public static JoystickButton intakeDown; 
+  public static JoystickButton upTilt;
+  public static JoystickButton downTilt;
+  public static JoystickButton controlWheelUp; 
+  public static JoystickButton controlWheelDown;
+  public static JoystickButton shootBall;
+  public static JoystickButton conveyorBelt;
+  public static JoystickButton elevatorUp;
+  public static JoystickButton elevatorDown;
+  public static JoystickButton hookUp;
+  public static JoystickButton hookDown;
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -80,13 +90,19 @@ public static ShooterBase shooterBase;
     logitech = new Joystick (2);
 
     wheelControl = new JoystickButton (logitech, 1); 
-    intakeButton = new JoystickButton(logitech, 2);
-    controlWheelUp = new JoystickButton(logitech, 3);
-    controlWheelDown = new JoystickButton(logitech, 4);
-    intakeUp = new JoystickButton(logitech, 5);
-    intakeDown = new JoystickButton(logitech, 6);
-    upTilt = new JoystickButton(logitech, 7);
-    downTilt = new JoystickButton(logitech, 8);
+    intakeButton = new JoystickButton(rightJoystick, 1);
+    controlWheelUp = new JoystickButton(logitech, 2);
+    controlWheelDown = new JoystickButton(logitech, 3);
+    intakeUp = new JoystickButton(logitech, 4);
+    intakeDown = new JoystickButton(logitech, 5);
+    upTilt = new JoystickButton(logitech, 6);
+    downTilt = new JoystickButton(logitech, 7);
+    shootBall = new JoystickButton(logitech, 8);
+    conveyorBelt = new JoystickButton(logitech, 9);
+    elevatorUp = new JoystickButton(logitech, 10);
+    elevatorDown = new JoystickButton(logitech, 11);
+    hookUp = new JoystickButton(logitech, 12);
+    hookDown = new JoystickButton(logitech, 13);
 
     driveBase = new DriveBase();
     driveWithJoystick = new DriveWithJoystick();
@@ -110,9 +126,22 @@ public static ShooterBase shooterBase;
     controlWheelUp.whenPressed(new ControlWheelUp());
     controlWheelDown.whenPressed(new ControlWheelDown());
     
-    shootBall = new JoystickButton(logitech, 1);
     shootBall.whileHeld(new ShootBall());
     shootBall.whenReleased(new StopBall());
+
+    conveyorBelt.whileHeld(new ConveyorStart());
+    conveyorBelt.whenReleased(new ConveyorStop());
+
+    elevatorUp.whileHeld(new ElevatorUp());
+    elevatorUp.whenReleased(new ElevatorStop());
+    elevatorDown.whileHeld(new ElevatorDown());
+    elevatorDown.whenReleased(new ElevatorStop());
+    hookUp.whileHeld(new HookUp());
+    hookUp.whenReleased(new HookStop());
+    hookDown.whileHeld(new HookDown());
+    hookDown.whenReleased(new HookStop());
+
+
 
     // Configure the button bindings
     configureButtonBindings();

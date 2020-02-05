@@ -17,6 +17,7 @@ public class ShooterBase extends SubsystemBase {
 public static WPI_TalonSRX TiltShooter = RobotContainer.tiltShooter;
 public static Spark leftSpark = RobotContainer.shooterLeftSpark;
 public static Spark rightSpark = RobotContainer.shooterRightSpark;
+public static Spark ConveyorSpark = RobotContainer.conveyorSpark;
   /**
    * Creates a new ShooterBase.
    */
@@ -47,5 +48,12 @@ public static Spark rightSpark = RobotContainer.shooterRightSpark;
   public void ShootBallOff(){
     leftSpark.set(0);
     rightSpark.set(0);
+  }
+
+  public void ConveyorStart(){
+    ConveyorSpark.set(1);
+  }
+  public void ConveyorStop(){
+    ConveyorSpark.set(0);
   }
 }
