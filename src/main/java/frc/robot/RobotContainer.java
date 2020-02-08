@@ -43,9 +43,8 @@ public class RobotContainer {
   public static Spark elevatorSpark = new Spark (5);
   public static Spark hookSpark = new Spark(6);
 
-
-  public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid (1,2);
-  public static DoubleSolenoid controlWheelSolenoid = new DoubleSolenoid (3,4);
+  public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid (0,1);
+  public static DoubleSolenoid controlWheelSolenoid = new DoubleSolenoid (2,3);
 
   public static Compressor robotCompressor = new Compressor(0);
 
