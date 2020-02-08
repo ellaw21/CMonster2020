@@ -62,6 +62,7 @@ public static ClimberBase climberBase;
 public static Joystick leftJoystick;
 public static Joystick rightJoystick;
 public static Joystick logitech; 
+public static Joystick buttonBoard; 
 
   public static JoystickButton wheelControl;
   public static JoystickButton intakeButton;
@@ -87,21 +88,22 @@ public static Joystick logitech;
     leftJoystick = new Joystick (0);
     rightJoystick = new Joystick (1);
     logitech = new Joystick (2);
+    buttonBoard = new Joystick (3);
 
     wheelControl = new JoystickButton (logitech, 1); 
     intakeButton = new JoystickButton(rightJoystick, 1);
     controlWheelUp = new JoystickButton(logitech, 2);
     controlWheelDown = new JoystickButton(logitech, 3);
-    intakeUp = new JoystickButton(logitech, 4);
-    intakeDown = new JoystickButton(logitech, 5);
+    intakeUp = new JoystickButton(rightJoystick, 2);
+    intakeDown = new JoystickButton(rightJoystick, 3);
     upTilt = new JoystickButton(logitech, 6);
     downTilt = new JoystickButton(logitech, 7);
     shootBall = new JoystickButton(logitech, 8);
     conveyorBelt = new JoystickButton(logitech, 9);
-    elevatorUp = new JoystickButton(logitech, 10);
-    elevatorDown = new JoystickButton(logitech, 11);
-    hookUp = new JoystickButton(logitech, 12);
-    hookDown = new JoystickButton(logitech, 13);
+    elevatorUp = new JoystickButton(buttonBoard, 1);
+    elevatorDown = new JoystickButton(buttonBoard, 2);
+    hookUp = new JoystickButton(buttonBoard, 3);
+    hookDown = new JoystickButton(buttonBoard, 4);
 
     driveBase = new DriveBase();
     driveWithJoystick = new DriveWithJoystick();
