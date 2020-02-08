@@ -34,7 +34,7 @@ public class RobotContainer {
   public static WPI_VictorSPX rightBackVictor = new WPI_VictorSPX(5);
 
   public static WPI_TalonSRX controlWheel = new WPI_TalonSRX (6);
-  public static WPI_TalonSRX tiltShooter = new WPI_TalonSRX (7);
+  //public static WPI_TalonSRX tiltShooter = new WPI_TalonSRX (7);
 
   public static Spark intakeSpark = new Spark (1); 
   public static Spark shooterLeftSpark = new Spark(2);
@@ -68,8 +68,6 @@ public static Joystick buttonBoard;
   public static JoystickButton intakeButton;
   public static JoystickButton intakeUp;
   public static JoystickButton intakeDown; 
-  public static JoystickButton upTilt;
-  public static JoystickButton downTilt;
   public static JoystickButton controlWheelUp; 
   public static JoystickButton controlWheelDown;
   public static JoystickButton shootBall;
@@ -78,6 +76,8 @@ public static Joystick buttonBoard;
   public static JoystickButton elevatorDown;
   public static JoystickButton hookUp;
   public static JoystickButton hookDown;
+  // public static JoystickButton upTilt;
+  //public static JoystickButton downTilt;
 
 
   /**
@@ -90,16 +90,19 @@ public static Joystick buttonBoard;
     logitech = new Joystick (2);
     buttonBoard = new Joystick (3);
 
-    wheelControl = new JoystickButton (logitech, 1); 
+  
     intakeButton = new JoystickButton(rightJoystick, 1);
-    controlWheelUp = new JoystickButton(logitech, 2);
-    controlWheelDown = new JoystickButton(logitech, 3);
     intakeUp = new JoystickButton(rightJoystick, 2);
     intakeDown = new JoystickButton(rightJoystick, 3);
-    upTilt = new JoystickButton(logitech, 6);
-    downTilt = new JoystickButton(logitech, 7);
-    shootBall = new JoystickButton(logitech, 8);
-    conveyorBelt = new JoystickButton(logitech, 9);
+
+    wheelControl = new JoystickButton (logitech, 1);
+    controlWheelUp = new JoystickButton(logitech, 2);
+    controlWheelDown = new JoystickButton(logitech, 3);
+    shootBall = new JoystickButton(logitech, 6);
+    conveyorBelt = new JoystickButton(logitech, 7);
+        //upTilt = new JoystickButton(logitech, 8);
+    //downTilt = new JoystickButton(logitech, 9);
+
     elevatorUp = new JoystickButton(buttonBoard, 1);
     elevatorDown = new JoystickButton(buttonBoard, 2);
     hookUp = new JoystickButton(buttonBoard, 3);
@@ -119,10 +122,10 @@ public static Joystick buttonBoard;
     intakeUp.whenPressed(new IntakeSolenoidUp()); 
     intakeDown.whenPressed(new IntakeSolenoidDown()); 
 
-    upTilt.whileHeld(new TiltUp());
+   /* upTilt.whileHeld(new TiltUp());
     upTilt.whenReleased(new TiltStop());
     downTilt.whileHeld(new TiltDown());
-    downTilt.whenReleased(new TiltStop());
+    downTilt.whenReleased(new TiltStop()); */
 
     controlWheelUp.whenPressed(new ControlWheelUp());
     controlWheelDown.whenPressed(new ControlWheelDown());
